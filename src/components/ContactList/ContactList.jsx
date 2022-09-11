@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const ContactList = ({contacts, onDelete}) => (
         <ul>
-            {contacts.map(({ id, name, number }) => (
-                <ListItem key={id}>{name}: {number}
+            {contacts.map(({ id, name, phone }) => (
+                <ListItem key={id}>{name}: {phone}
                 <ListBtn type="button" onClick={() => onDelete(id)}>Delete</ListBtn>
                 </ListItem>))}
         

@@ -5,9 +5,11 @@ import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter";
 
+import { useEffect } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
-import { addContact, deleteContact } from "redux/contacts-actions";
+import { addContact, deleteContact, fetchContacts } from "../redux/contacts-operations";
 import { changeFilter } from "redux/filter-actions"; 
 import { getFilteredContacts } from "redux/contacts-selectors"; 
 import { getFilter } from "redux/filter-selector";
@@ -20,8 +22,12 @@ const App = () => {
 
     const dispatch = useDispatch();
   
-  const newContact = (name, number) => {
-    const action = addContact( name, number );
+  useEffect(() => {
+        dispatch(fetchContacts())
+   }, [dispatch]);
+  
+  const newContact = (name, phone) => {
+    const action = addContact( {name, phone} );
     dispatch(action)
   }
  
