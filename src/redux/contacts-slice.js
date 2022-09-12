@@ -3,23 +3,12 @@ import {createSlice, combineReducers} from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "./contacts-operations";
 
 
- const nameExists = (store, payload) => {
-  const contactFound = store.find(
-    contact => contact.name.toLowerCase() === payload.name.toLowerCase(),
-  );
-  if (contactFound !== undefined) {
-      alert(`Contact ${payload.name} already exist`)
-      return true;
-    }
-    return false;
-};
-
 const itemsSlice = createSlice({
     name: "contacts",
     initialState: [],
     extraReducers: {
         [fetchContacts.fulfilled]: (_, {payload}) => payload,
-        [addContact.fulfilled]: (store, {payload}) => nameExists(store, payload) ? [...store] : [...store, payload],
+        [addContact.fulfilled]: (store, {payload}) =>  [...store, payload],
         [deleteContact.fulfilled]: (store, {payload}) => store.filter(item => item.id !== payload),
     }
 });

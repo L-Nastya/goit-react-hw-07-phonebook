@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 
-const ContactForm =(props)=>{
+const ContactForm =({contacts}, props)=>{
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
 
@@ -26,6 +26,10 @@ const ContactForm =(props)=>{
     };
     const submitForm = (e) => {
         e.preventDefault();
+        if (contacts.find(contact => contact.name === name)) {
+            alert(`Contact ${name} already exist`)
+            return;
+        }
         props.onSubmit(name,phone)
         reset();
     };
