@@ -4,6 +4,7 @@ import Section from "./Section/Section";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter";
+import Loader from "./loader/loader";
 
 import { useEffect } from "react";
 
@@ -13,12 +14,14 @@ import { addContact, deleteContact, fetchContacts } from "../redux/contacts-oper
 import { changeFilter } from "redux/filter-actions"; 
 import { getFilteredContacts } from "redux/contacts-selectors"; 
 import { getFilter } from "redux/filter-selector";
+import { getLoader } from "redux/loader-selector";
 
 
 const App = () => {
  
-   const contacts = useSelector(getFilteredContacts);
-    const filter = useSelector(getFilter);
+  const contacts = useSelector(getFilteredContacts);
+  const filter = useSelector(getFilter);
+  const loader = useSelector(getLoader);
 
     const dispatch = useDispatch();
   
@@ -50,6 +53,7 @@ const App = () => {
             value={filter}
             onChange={textFilter}
           />
+          {loader && <Loader/>}
          <ContactList
             contacts={contacts}
             onDelete={removeContact}
