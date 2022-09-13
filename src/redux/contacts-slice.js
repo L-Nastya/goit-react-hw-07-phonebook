@@ -8,7 +8,7 @@ const itemsSlice = createSlice({
     initialState: [],
     extraReducers: {
         [fetchContacts.fulfilled]: (_, {payload}) => payload,
-        [addContact.fulfilled]: (store, {payload}) =>  store.push(payload),
+        [addContact.fulfilled]: (store, {payload}) =>  {store.push(payload)},
         [deleteContact.fulfilled]: (store, {payload}) => store.filter(item => item.id !== payload),
     }
 });

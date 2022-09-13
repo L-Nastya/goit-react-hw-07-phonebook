@@ -1,11 +1,13 @@
 import { React } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import shortid from "shortid";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 
-const ContactForm =({contacts,onSubmit})=>{
+const ContactForm =({contacts, onSubmit})=>{
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
 
@@ -27,7 +29,7 @@ const ContactForm =({contacts,onSubmit})=>{
     const submitForm = (e) => {
         e.preventDefault();
         if (contacts.find(contact => contact.name === name)) {
-            alert(`Contact ${name} is alreadu in your list`);
+            toast.warn(`Contact ${name} is already in your list`);
             return;
         }
         onSubmit(name,phone)

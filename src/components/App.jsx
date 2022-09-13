@@ -1,4 +1,6 @@
 import { React } from "react";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
 import Section from "./Section/Section";
 import ContactForm from "./ContactForm/ContactForm";
@@ -30,7 +32,7 @@ const App = () => {
    }, [dispatch]);
   
   const newContact = (name, phone) => {
-    const action = addContact( {name, phone} );
+    const action = addContact({ name, phone} );
     dispatch(action)
   }
  
@@ -59,6 +61,16 @@ const App = () => {
             onDelete={removeContact}
            />
         </Section>
+        <ToastContainer 
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          closeOnClick={true}
+          pauseOnHover={true}
+          draggable={true}
+          progress={undefined}
+          
+/>
         </SectionStyle>
   );
   }
